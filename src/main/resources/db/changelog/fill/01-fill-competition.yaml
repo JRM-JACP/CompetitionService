@@ -1,0 +1,25 @@
+databaseChangeLog:
+  - changeSet:
+      id: fill-table-competition
+      author: Aleksandr
+      changes:
+        - loadData:
+            encoding: UTF-8
+            separator: ;
+            quotchar: ''''
+            usePreparedStatements: true
+            tableName: competition
+            file: ../../competition.csv
+            relativeToChangelogFile: true
+            columns:
+              - column:
+                  header: Name
+                  name: name
+                  type: varchar(100)
+              - column:
+                  header: Description
+                  name: description
+                  type: varchar(255)
+      rollback:
+        - sql:
+            sql: DELETE FROM competition;

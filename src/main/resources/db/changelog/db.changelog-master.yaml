@@ -1,2 +1,8 @@
 databaseChangeLog:
-  - 
+  - include:
+      file: init/01-create-competition.yaml
+      relativeToChangelogFile: true
+
+  - include:
+      file: fill/01-fill-competition.yaml
+      relativeToChangelogFile: true
