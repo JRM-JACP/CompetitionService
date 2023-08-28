@@ -1,34 +1,4 @@
-Name;Description
-Competition1;test description of competition1
-Competition2;test description of competition2
-Competition3;test description of competition3
-Competition4;test description of competition4
-Competition5;test description of competition5
-Competition6;test description of competition6
-Competition7;test description of competition7
-Competition8;test description of competition8
-Competition9;test description of competition9
-Competition10;test description of competition10
-Competition11;test description of competition11
-Competition12;test description of competition12
-Competition13;test description of competition13
-Competition14;test description of competition14
-Competition15;test description of competition15
-Competition16;test description of competition16
-Competition17;test description of competition17
-Competition18;test description of competition18
-Competition19;test description of competition19
-Competition20;test description of competition20
-Competition21;test description of competition21
-Competition22;test description of competition22
-Competition23;test description of competition23
-Competition24;test description of competition24
-Competition25;test description of competition25
-Competition26;test description of competition26
-Competition27;test description of competition27
-Competition28;test description of competition28
-Competition29;test description of competition29
-Competition30;test description of competition30
-Competition31;test description of competition31
-Competition32;test description of competition32
-Competition33;test description of competition33
+Name;Description;Participants;Start_date;End_date;Status;Tasks
+Competition1;test description of competition1;1,2,3;'2023-08-25 10:00:00';'2023-08-25 15:00:00';true;'Task1','Task2','Task3'
+//Competition2;test description of competition2;"{2,4,5}";'2023-08-26 15:00:00';'2023-08-26 18:00:00';False;"{'Task2','Task3'}"
+//Competition3;test description of competition3;"{6,7,8}";'2023-08-27 23:00:00';'2023-08-27 23:30:00';True;"{'Task4','Task2','Task3'}"

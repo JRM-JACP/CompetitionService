@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:5432/competitionservice
+    username: competition
+    password: competition
+    driver-class-name: org.postgresql.Driver
+
+  liquibase:
+    change-log: classpath:src/main/resources/db/changelog/db.changelog-master.yaml
+    user: competition
+    password: competition

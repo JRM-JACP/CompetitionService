@@ -11,6 +11,8 @@ databaseChangeLog:
             tableName: competition
             file: ../../competition.csv
             relativeToChangelogFile: true
+            commentLineStartsWith: //
+            schemaName: public
             columns:
               - column:
                   header: Name
@@ -20,6 +22,26 @@ databaseChangeLog:
                   header: Description
                   name: description
                   type: varchar(255)
+              - column:
+                  header: Participants
+                  name: participants
+                  type: numeric
+              - column:
+                  header: Start_date
+                  name: start_date
+                  type: timestamp
+              - column:
+                  header: End_date
+                  name: end_date
+                  type: timestamp
+              - column:
+                  header: Status
+                  name: status
+                  type: boolean
+              - column:
+                  header: Tasks
+                  name: tasks
+                  type: text[]
       rollback:
         - sql:
             sql: DELETE FROM competition;

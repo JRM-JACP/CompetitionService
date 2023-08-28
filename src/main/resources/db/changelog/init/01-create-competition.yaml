@@ -23,3 +23,18 @@ databaseChangeLog:
               - column:
                   name: description
                   type: varchar(255)
+              - column:
+                  name: participants
+                  type: bigint[]
+              - column:
+                  name: start_date
+                  type: timestamp
+              - column:
+                  name: end_date
+                  type: timestamp
+              - column:
+                  name: status
+                  type: boolean
+              - column:
+                  name: tasks
+                  type: text[]
