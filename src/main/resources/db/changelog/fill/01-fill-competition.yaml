@@ -1,0 +1,47 @@
+databaseChangeLog:
+  - changeSet:
+      id: fill-table-competition
+      author: Aleksandr
+      changes:
+        - loadData:
+            encoding: UTF-8
+            separator: ;
+            quotchar: ''''
+            usePreparedStatements: true
+            tableName: competition
+            file: ../../competition.csv
+            relativeToChangelogFile: true
+            commentLineStartsWith: //
+            schemaName: public
+            columns:
+              - column:
+                  header: Name
+                  name: name
+                  type: varchar(100)
+              - column:
+                  header: Description
+                  name: description
+                  type: varchar(255)
+              - column:
+                  header: Participants
+                  name: participants
+                  type: numeric
+              - column:
+                  header: Start_date
+                  name: start_date
+                  type: timestamp
+              - column:
+                  header: End_date
+                  name: end_date
+                  type: timestamp
+              - column:
+                  header: Status
+                  name: status
+                  type: boolean
+              - column:
+                  header: Tasks
+                  name: tasks
+                  type: text[]
+      rollback:
+        - sql:
+            sql: DELETE FROM competition;
