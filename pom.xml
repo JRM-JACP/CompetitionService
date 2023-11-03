@@ -15,10 +15,11 @@
     <description>Competition Service</description>
     <properties>
         <java.version>20</java.version>
-        <liquibase.version>4.23.1</liquibase.version>
-        <liquibase-maven-plugin.version>4.23.1</liquibase-maven-plugin.version>
+        <liquibase.version>4.24.0</liquibase.version>
+        <liquibase-maven-plugin.version>4.24.0</liquibase-maven-plugin.version>
         <postgresql.version>42.6.0</postgresql.version>
         <snakeyaml.version>2.1</snakeyaml.version>
+        <liquibase.logging>debug</liquibase.logging>
     </properties>
     <dependencies>
         <dependency>
@@ -77,11 +78,21 @@
                 <artifactId>liquibase-maven-plugin</artifactId>
                 <version>${liquibase-maven-plugin.version}</version>
                 <configuration>
+                    <!-- use "mvn liquibase:update -X" in Execute Maven Goal -->
                     <changeLogFile>src/main/resources/db/changelog/db.changelog-master.yaml</changeLogFile>
                     <url>jdbc:postgresql://localhost:5432/competitionservice</url>
                     <username>competition</username>
                     <password>competition</password>
                     <verbose>true</verbose>
+                    <logging>debug</logging>
+                    <!-- Change Log Section -->
+                    <!-- use "mvn liquibase:generateChangeLog" in Execute Maven Goal -->
+                    <diffTypes>tables,columns,data</diffTypes>
+                    <!-- Uncomment the raw below to get the changelog with now retrieving data from DB -->
+                    <!--<dataOutputDirectory>../CompetitionService</dataOutputDirectory>-->
+                    <outputChangeLogFile>../CompetitionService/output_changelog.xml</outputChangeLogFile>
+                    <overwriteOutputFile>true</overwriteOutputFile>
+                    <!-- End of Change Log Section -->
                 </configuration>
             </plugin>
         </plugins>

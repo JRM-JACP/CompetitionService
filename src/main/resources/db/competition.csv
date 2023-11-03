@@ -1,4 +1,6 @@
 Name;Description;Participants;Start_date;End_date;Status;Tasks
-Competition1;test description of competition1;1,2,3;'2023-08-25 10:00:00';'2023-08-25 15:00:00';true;'Task1','Task2','Task3'
-//Competition2;test description of competition2;"{2,4,5}";'2023-08-26 15:00:00';'2023-08-26 18:00:00';False;"{'Task2','Task3'}"
-//Competition3;test description of competition3;"{6,7,8}";'2023-08-27 23:00:00';'2023-08-27 23:30:00';True;"{'Task4','Task2','Task3'}"
+Competition1;test description of competition1;{1,2,3};'2023-08-25 10:00:00';'2023-05-02 20:02:25';true;{10,20,30}
+Competition2;test description of competition2;{2,4,5};'2023-08-26 15:00:00';'2023-08-26 18:00:00';false;{'Task2','Task3'}
+Competition3;test description of competition3;{6,7,8};'2023-08-27 23:00:00';'2023-08-27 23:30:00';true;{'Task1','Task2','Task3'}
+//It is possible to comment the 1st raw. The Liquibase understands the column names automatically
+//in case the data go in the right sequence

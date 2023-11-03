@@ -1,0 +1,53 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet author="alex_jd (generated)" id="1699023665641-1">
+        <createTable tableName="competition">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="participants" type="INT8[]"/>
+            <column name="start_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="end_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="status" type="BOOLEAN"/>
+            <column name="tasks" type="TEXT[]"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="alex_jd (generated)" id="1699023665641-2">
+        <insert tableName="competition">
+            <column name="id" valueNumeric="1"/>
+            <column name="name" value="Competition1"/>
+            <column name="description" value="test description of competition1"/>
+            <column name="participants" value="{1,2,3}"/>
+            <column name="start_date" valueDate="2023-08-25T10:00:00"/>
+            <column name="end_date" valueDate="2023-05-02T20:02:25"/>
+            <column name="status" valueBoolean="true"/>
+            <column name="tasks" value="{10,20,30}"/>
+        </insert>
+        <insert tableName="competition">
+            <column name="id" valueNumeric="2"/>
+            <column name="name" value="Competition2"/>
+            <column name="description" value="test description of competition2"/>
+            <column name="participants" value="{2,4,5}"/>
+            <column name="start_date" valueDate="2023-08-26T15:00:00"/>
+            <column name="end_date" valueDate="2023-08-26T18:00:00"/>
+            <column name="status" valueBoolean="false"/>
+            <column name="tasks" value="{'Task2','Task3'}"/>
+        </insert>
+        <insert tableName="competition">
+            <column name="id" valueNumeric="3"/>
+            <column name="name" value="Competition3"/>
+            <column name="description" value="test description of competition3"/>
+            <column name="participants" value="{6,7,8}"/>
+            <column name="start_date" valueDate="2023-08-27T23:00:00"/>
+            <column name="end_date" valueDate="2023-08-27T23:30:00"/>
+            <column name="status" valueBoolean="true"/>
+            <column name="tasks" value="{'Task1','Task2','Task3'}"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

@@ -1,3 +1,4 @@
+# https://docs.liquibase.com/change-types/load-data.html
 databaseChangeLog:
   - changeSet:
       id: fill-table-competition
@@ -14,26 +15,28 @@ databaseChangeLog:
             commentLineStartsWith: //
             schemaName: public
             columns:
+              # Pay attention on loading data type. If you have some doubts use "other"
+              # https://javadocs.liquibase.com/liquibase-core/liquibase/change/core/LoadDataChange.LOAD_DATA_TYPE.html?_ga=2.131077391.1674202242.1698966129-536424592.1698966128
               - column:
                   header: Name
                   name: name
-                  type: varchar(100)
+                  type: string
               - column:
                   header: Description
                   name: description
-                  type: varchar(255)
+                  type: string
               - column:
                   header: Participants
                   name: participants
-                  type: numeric
+                  type: other
               - column:
                   header: Start_date
                   name: start_date
-                  type: timestamp
+                  type: date
               - column:
                   header: End_date
                   name: end_date
-                  type: timestamp
+                  type: date
               - column:
                   header: Status
                   name: status
@@ -41,7 +44,7 @@ databaseChangeLog:
               - column:
                   header: Tasks
                   name: tasks
-                  type: text[]
+                  type: other
       rollback:
         - sql:
             sql: DELETE FROM competition;

@@ -1,3 +1,4 @@
+# https://docs.liquibase.com/change-types/create-table.html
 databaseChangeLog:
   - changeSet:
       id: create-table-competition
@@ -23,6 +24,8 @@ databaseChangeLog:
               - column:
                   name: description
                   type: varchar(255)
+                  constraints:
+                    nullable: false
               - column:
                   name: participants
                   type: bigint[]
