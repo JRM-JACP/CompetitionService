@@ -6,6 +6,6 @@ spring:
     driver-class-name: org.postgresql.Driver
 
   liquibase:
-    change-log: classpath:src/main/resources/db/changelog/db.changelog-master.yaml
+    change-log: classpath:resources/db/changelog/db.changelog-master.yaml
     user: competition
     password: competition
