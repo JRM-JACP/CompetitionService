@@ -1,4 +1,3 @@
-# https://docs.liquibase.com/change-types/create-table.html
 databaseChangeLog:
   - changeSet:
       id: create-table-competition
