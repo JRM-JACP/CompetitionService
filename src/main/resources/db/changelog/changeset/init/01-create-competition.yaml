@@ -14,7 +14,7 @@ databaseChangeLog:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: name
+                  name: problem
                   type: varchar(100)
                   constraints:
                     unique: true
@@ -29,14 +29,14 @@ databaseChangeLog:
                   name: participants
                   type: bigint[]
               - column:
-                  name: start_date
+                  name: startDate
                   type: timestamp
               - column:
-                  name: end_date
+                  name: endDate
                   type: timestamp
               - column:
                   name: status
                   type: boolean
               - column:
-                  name: tasks
+                  name: body
                   type: text[]
