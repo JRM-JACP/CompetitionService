@@ -5,8 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.jacp.enums.Status;
 
-import java.text.DateFormat;
+import java.time.Instant;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -25,25 +27,31 @@ public class CompetitionEntity {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "name")
-    private String problem;
-
-    @Column(name = "description")
-    private String description;
-
-    @OneToMany
     @Column(name = "participants")
-    private List<ParticipantsEntity> participants;
+    @ElementCollection
+    @CollectionTable(name = "competition_participants",
+            joinColumns = @JoinColumn(name = "competition_id"))
+    private List<Long> participants;
 
-    @Column(name = "startDate")
-    private DateFormat startDate;
+    @Column(name = "create_date")
+    private Date createDate = Date.from(Instant.now());
 
-    @Column(name = "endDate")
-    private DateFormat endDate;
+    @Column(name = "start_date")
+    private Date startDate;
+
+    @Column(name = "end_date")
+    private Date endDate;
+
+    @Column(name = "duration")
+    private int duration;
 
     @Column(name = "status")
-    private Boolean status;
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
     @Column(name = "tasks")
-    private String body;
+    @ElementCollection
+    @CollectionTable(name = "competition_tasks",
+            joinColumns = @JoinColumn(name = "competition_id"))
+    private List<Long> tasks;
 }
