@@ -1,8 +1,5 @@
 databaseChangeLog:
   - include:
-      file: db/changelog/changeset/01-create-competition.yaml
-      relativeToChangelogFile: true
-
+      file: db/changelog/changeset/init/01-create-competition.yaml
   - include:
-      file: db/changelog/changeset/01-fill-competition.yaml
-      relativeToChangelogFile: true
+      file: db/changelog/changeset/fill/01-fill-competition.yaml
