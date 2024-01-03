@@ -14,29 +14,29 @@ databaseChangeLog:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: problem
-                  type: varchar(100)
-                  constraints:
-                    unique: true
-                    uniqueConstraintName: uk_competition
-                    nullable: false
-              - column:
-                  name: description
-                  type: varchar(255)
-                  constraints:
-                    nullable: false
-              - column:
                   name: participants
                   type: bigint[]
               - column:
-                  name: startDate
+                  name: create_date
                   type: timestamp
+                  constraints:
+                    nullable: true
               - column:
-                  name: endDate
+                  name: start_date
                   type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: end_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: duration
+                  type: bigint
               - column:
                   name: status
-                  type: boolean
+                  type: varchar(30)
               - column:
-                  name: body
-                  type: text[]
+                  name: tasks
+                  type: bigint[]

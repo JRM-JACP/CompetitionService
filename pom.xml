@@ -15,10 +15,12 @@
     <description>Competition Service. Service responsible for creating competitions</description>
     <properties>
         <java.version>20</java.version>
+        <mapstruct.version>1.5.5.Final</mapstruct.version>
         <liquibase.version>4.24.0</liquibase.version>
         <liquibase-maven-plugin.version>4.24.0</liquibase-maven-plugin.version>
         <postgresql.version>42.6.0</postgresql.version>
         <snakeyaml.version>2.1</snakeyaml.version>
+        <lombok.version>1.18.30</lombok.version>
     </properties>
     <dependencies>
         <dependency>
@@ -37,6 +39,23 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>${mapstruct.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-processor</artifactId>
+            <version>${mapstruct.version}</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.liquibase</groupId>

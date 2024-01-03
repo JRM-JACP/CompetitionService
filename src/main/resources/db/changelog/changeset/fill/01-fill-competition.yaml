@@ -9,37 +9,36 @@ databaseChangeLog:
             quotchar: ''''
             usePreparedStatements: true
             tableName: competition
-            file: ../../competition.csv
-            relativeToChangelogFile: true
+            file: db/changelog/competition.csv
             commentLineStartsWith: //
             schemaName: public
             columns:
               - column:
-                  header: Name
-                  name: name
-                  type: string
-              - column:
-                  header: Description
-                  name: description
-                  type: string
-              - column:
-                  header: Participants
+                  header: participants
                   name: participants
                   type: other
               - column:
-                  header: Start_date
+                  header: create_date
+                  name: create_date
+                  type: date
+              - column:
+                  header: start_date
                   name: start_date
                   type: date
               - column:
-                  header: End_date
+                  header: end_date
                   name: end_date
                   type: date
               - column:
-                  header: Status
-                  name: status
-                  type: boolean
+                  header: duration
+                  name: duration
+                  type: NUMERIC
               - column:
-                  header: Tasks
+                  header: status
+                  name: status
+                  type: other
+              - column:
+                  header: tasks
                   name: tasks
                   type: other
       rollback:
