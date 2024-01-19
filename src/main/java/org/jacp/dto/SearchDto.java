@@ -13,7 +13,7 @@ import java.util.List;
 public class SearchDto {
     private int limitTasks;
     private Difficulty difficulty;
-    private Tags tagsList;
+    private List<Tags> tagsList;
     private List<ParticipantsDto> participantsDto;
     private int duration;
 }
