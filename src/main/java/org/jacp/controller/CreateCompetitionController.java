@@ -28,7 +28,7 @@ public class CreateCompetitionController {
 
     static final String URL = "/api/v1/competition";
     @Autowired
-    CompetitionMapper mapper;
+    private CompetitionMapper mapper;
     @Autowired
     private QuestionService questionService;
     @Autowired
