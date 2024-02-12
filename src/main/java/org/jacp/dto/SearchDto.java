@@ -14,6 +14,6 @@ public class SearchDto {
     private int limitTasks;
     private Difficulty difficulty;
     private List<Tags> tagsList;
-    private List<ParticipantsDto> participantsDto;
+    private List<ParticipantDto> participantDto;
     private int duration;
 }

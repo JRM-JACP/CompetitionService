@@ -29,7 +29,7 @@ public class QuestionService {
         this.restTemplate = restTemplate;
     }
 
-    public ResponseEntity<List<QuestionDto>> responseFromQuestionServiceFilter(SearchDto searchDto) {
+    public ResponseEntity<List<QuestionDto>> getQuestionsByFilter(SearchDto searchDto) {
         return restTemplate.exchange(
                 URI.create(url),
                 HttpMethod.POST,
