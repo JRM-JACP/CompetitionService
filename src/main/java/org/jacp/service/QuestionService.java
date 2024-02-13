@@ -3,7 +3,6 @@ package org.jacp.service;
 import lombok.RequiredArgsConstructor;
 import org.jacp.dto.FilterDto;
 import org.jacp.dto.QuestionDto;
-import org.jacp.dto.SearchDto;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
