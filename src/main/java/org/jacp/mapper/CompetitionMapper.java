@@ -13,7 +13,7 @@ import java.util.List;
 @Mapper(componentModel = "spring", injectionStrategy = InjectionStrategy.FIELD)
 public interface CompetitionMapper {
 
-    CompetitionDto toCompetitionDto(List<Long> tasks, List<Long> participants, int duration, String status);
+    CompetitionDto toCompetitionDto(List<Long> tasks, List<Long> participant, int duration, String status);
 
     CompetitionEntity toCompetitionEntity(CompetitionDto competitionDto);
 }

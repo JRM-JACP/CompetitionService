@@ -24,8 +24,8 @@ import java.util.List;
  * @author saffchen created on 04.12.2023
  */
 @RestController
-@RequestMapping(value = CreateCompetitionController.URL, produces = MediaType.APPLICATION_JSON_VALUE)
-public class CreateCompetitionController {
+@RequestMapping(value = CompetitionController.URL, produces = MediaType.APPLICATION_JSON_VALUE)
+public class CompetitionController {
 
     static final String URL = "/api/v1/competition";
     @Autowired
@@ -38,10 +38,11 @@ public class CreateCompetitionController {
     @PostMapping("/create")
     public ResponseEntity<CompetitionEntity> createCompetition(@RequestBody SearchDto searchDto) {
         List<QuestionDto> questions = questionService.getQuestionsByFilter(searchDto).getBody();
+        List<ParticipantDto> participants = searchDto.getParticipantDto();
 
-        Assert.notNull(questions, "Question is null");
+        Assert.notNull(questions, "Question are null");
 
-        List<Long> participantIDs = searchDto.getParticipantDto().stream()
+        List<Long> participantIDs = participants.stream()
                 .map(ParticipantDto::getId)
                 .toList();
 

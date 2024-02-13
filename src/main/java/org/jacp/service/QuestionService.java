@@ -1,8 +1,8 @@
 package org.jacp.service;
 
+import lombok.RequiredArgsConstructor;
 import org.jacp.dto.QuestionDto;
 import org.jacp.dto.SearchDto;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -18,16 +18,12 @@ import java.util.List;
  * @author saffchen created on 13.12.2023
  */
 @Component
+@RequiredArgsConstructor
 public class QuestionService {
 
     private final RestTemplate restTemplate;
     @Value("${url.questionService}")
     private String url;
-
-    @Autowired
-    public QuestionService(RestTemplate restTemplate) {
-        this.restTemplate = restTemplate;
-    }
 
     public ResponseEntity<List<QuestionDto>> getQuestionsByFilter(SearchDto searchDto) {
         return restTemplate.exchange(
