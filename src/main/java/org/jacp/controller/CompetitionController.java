@@ -52,6 +52,7 @@ public class CompetitionController {
 
         CompetitionDto competitionDto = mapper.
                 toCompetitionDto(questionIDs, participantIDs, searchDto.getDuration(), Status.CREATED.toString());
+        System.out.println(participantIDs);
 
         CompetitionEntity competitionEntity = mapper.toCompetitionEntity(competitionDto);
 
