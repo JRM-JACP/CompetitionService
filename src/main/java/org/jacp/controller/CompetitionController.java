@@ -37,7 +37,7 @@ public class CompetitionController {
 
     @PostMapping("/create")
     public ResponseEntity<CompetitionEntity> createCompetition(@RequestBody SearchDto searchDto) {
-        List<QuestionDto> questions = questionService.getQuestionsByFilter(searchDto).getBody();
+        List<QuestionDto> questions = questionService.getQuestionsByFilter(searchDto.getFilterDto());
         List<ParticipantDto> participants = searchDto.getParticipantDto();
 
         Assert.notNull(questions, "Question are null");

@@ -1,8 +1,6 @@
 package org.jacp.dto;
 
 import lombok.Data;
-import org.jacp.enums.Difficulty;
-import org.jacp.enums.Tags;
 
 import java.util.List;
 
@@ -11,9 +9,7 @@ import java.util.List;
  */
 @Data
 public class SearchDto {
-    private int limitTasks;
-    private Difficulty difficulty;
-    private List<Tags> tagsList;
+    private FilterDto filterDto;
     private List<ParticipantDto> participantDto;
     private int duration;
 }

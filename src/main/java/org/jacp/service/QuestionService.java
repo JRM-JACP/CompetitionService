@@ -1,6 +1,7 @@
 package org.jacp.service;
 
 import lombok.RequiredArgsConstructor;
+import org.jacp.dto.FilterDto;
 import org.jacp.dto.QuestionDto;
 import org.jacp.dto.SearchDto;
 import org.springframework.beans.factory.annotation.Value;
@@ -25,13 +26,15 @@ public class QuestionService {
     @Value("${url.questionService}")
     private String url;
 
-    public ResponseEntity<List<QuestionDto>> getQuestionsByFilter(SearchDto searchDto) {
-        return restTemplate.exchange(
+    public List<QuestionDto> getQuestionsByFilter(FilterDto filterDto) {
+
+        ResponseEntity<List<QuestionDto>> response = restTemplate.exchange(
                 URI.create(url),
                 HttpMethod.POST,
-                new HttpEntity<>(searchDto),
+                new HttpEntity<>(filterDto),
                 new ParameterizedTypeReference<>() {
                 }
         );
+        return response.getBody();
     }
 }
