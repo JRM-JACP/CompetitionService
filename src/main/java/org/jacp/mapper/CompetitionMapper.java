@@ -15,5 +15,7 @@ public interface CompetitionMapper {
 
     CompetitionDto toCompetitionDto(List<Long> tasks, List<Long> participants, int duration, String status);
 
+    List<CompetitionDto> toCompetitionDtoList(List<CompetitionEntity> competitionEntities);
+
     CompetitionEntity toCompetitionEntity(CompetitionDto competitionDto);
 }
