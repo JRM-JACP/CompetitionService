@@ -24,6 +24,6 @@ public class CompetitionService {
 
     public List<CompetitionEntity> getAllByStatus(Status status) {
         return competitionRepository.getAllByStatus(status)
-                .orElseThrow(() -> new NoSuchElementException("Competition with "+ status +" status are not found"));
+                .orElseThrow(() -> new NoSuchElementException("Competition with " + status + " status are not found"));
     }
 }
