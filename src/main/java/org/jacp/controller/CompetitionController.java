@@ -58,7 +58,7 @@ public class CompetitionController {
     }
 
     @GetMapping
-    public ResponseEntity<List<CompetitionDto>> getAllQueuedCompetition() {
-        return ResponseEntity.ok(mapper.toCompetitionDtoList(competitionService.getAllQueued()));
+    public ResponseEntity<List<CompetitionDto>> getAllByStatusCompetition(@RequestParam("status") Status status) {
+        return ResponseEntity.ok(mapper.toCompetitionDtoList(competitionService.getAllByStatus(status)));
     }
 }

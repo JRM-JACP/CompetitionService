@@ -2,6 +2,7 @@ package org.jacp.service;
 
 import lombok.AllArgsConstructor;
 import org.jacp.entity.CompetitionEntity;
+import org.jacp.enums.Status;
 import org.jacp.repositry.CompetitionRepository;
 import org.springframework.stereotype.Component;
 
@@ -21,8 +22,8 @@ public class CompetitionService {
         return competitionRepository.save(competitionEntity);
     }
 
-    public List<CompetitionEntity> getAllQueued() {
-        return competitionRepository.getAllQueued()
+    public List<CompetitionEntity> getAllByStatus(Status status) {
+        return competitionRepository.getAllByStatus(status)
                 .orElseThrow(() -> new NoSuchElementException("Competition with queued status are not found"));
     }
 }
