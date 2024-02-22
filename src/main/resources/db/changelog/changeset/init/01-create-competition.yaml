@@ -1,0 +1,42 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-table-competition
+      author: Aleksandr
+      changes:
+        - createTable:
+            tableName: competition
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: participants
+                  type: bigint[]
+              - column:
+                  name: create_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: start_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: end_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: duration
+                  type: bigint
+              - column:
+                  name: status
+                  type: varchar(30)
+              - column:
+                  name: tasks
+                  type: bigint[]

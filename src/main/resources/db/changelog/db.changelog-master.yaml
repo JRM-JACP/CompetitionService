@@ -1,0 +1,5 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/changeset/init/01-create-competition.yaml
+  - include:
+      file: db/changelog/changeset/fill/01-fill-competition.yaml
