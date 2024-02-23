@@ -54,6 +54,7 @@ public class CompetitionController {
         return ResponseEntity.ok(createCompetition);
     }
 
+
     @PostMapping("/{competitionId}/tasks/submit")
     public void submitCompetition
             (@PathVariable Long competitionId, @RequestBody QuestionEntity questionEntity) {
@@ -61,3 +62,10 @@ public class CompetitionController {
         producer.produce(questionEntity);
     }
 }
+
+    @GetMapping
+    public ResponseEntity<List<CompetitionDto>> getAllByStatusCompetition(@RequestParam("status") Status status) {
+        return ResponseEntity.ok(mapper.toCompetitionDtoList(competitionService.getAllByStatus(status)));
+    }
+}
+
