@@ -13,6 +13,14 @@ spring:
     change-log: classpath:/db/changelog/db.changelog-master.yaml
     user: postgres
     password: postgres
+  kafka:
+    producer:
+      bootstrap-servers: localhost:29092
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+    template:
+      default-topic: jacp-competition-solutions
+
 logging:
   level:
     org:
