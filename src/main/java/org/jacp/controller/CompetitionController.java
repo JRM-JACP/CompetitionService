@@ -1,15 +1,14 @@
 package org.jacp.controller;
 
-import org.jacp.dto.CompetitionDto;
-import org.jacp.dto.ParticipantDto;
-import org.jacp.dto.QuestionDto;
-import org.jacp.dto.SearchDto;
+import lombok.RequiredArgsConstructor;
+import org.jacp.dto.*;
 import org.jacp.entity.CompetitionEntity;
+import org.jacp.entity.QuestionEntity;
 import org.jacp.enums.Status;
 import org.jacp.mapper.CompetitionMapper;
 import org.jacp.service.CompetitionService;
+import org.jacp.service.CompetitionSolutionProducer;
 import org.jacp.service.QuestionService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.Assert;
@@ -20,17 +19,17 @@ import java.util.List;
 /**
  * @author saffchen created on 04.12.2023
  */
+@RequiredArgsConstructor
 @RestController
 @RequestMapping(value = CompetitionController.URL, produces = MediaType.APPLICATION_JSON_VALUE)
 public class CompetitionController {
 
     static final String URL = "/api/v1/competition";
-    @Autowired
-    private CompetitionMapper mapper;
-    @Autowired
-    private QuestionService questionService;
-    @Autowired
-    private CompetitionService competitionService;
+
+    private final CompetitionMapper mapper;
+    private final QuestionService questionService;
+    private final CompetitionService competitionService;
+    private final CompetitionSolutionProducer producer;
 
     @PostMapping("/create")
     public ResponseEntity<CompetitionEntity> createCompetition(@RequestBody SearchDto searchDto) {
@@ -49,16 +48,24 @@ public class CompetitionController {
 
         CompetitionDto competitionDto = mapper.
                 toCompetitionDto(questionIDs, participantIDs, searchDto.getDuration(), Status.CREATED.toString());
-
         CompetitionEntity competitionEntity = mapper.toCompetitionEntity(competitionDto);
-
         CompetitionEntity createCompetition = competitionService.create(competitionEntity);
 
         return ResponseEntity.ok(createCompetition);
     }
+
+
+    @PostMapping("/{competitionId}/tasks/submit")
+    public void submitCompetition
+            (@PathVariable Long competitionId, @RequestBody QuestionEntity questionEntity) {
+        questionEntity.setCompetitionId(competitionId);
+        producer.produce(questionEntity);
+    }
+}
 
     @GetMapping
     public ResponseEntity<List<CompetitionDto>> getAllByStatusCompetition(@RequestParam("status") Status status) {
         return ResponseEntity.ok(mapper.toCompetitionDtoList(competitionService.getAllByStatus(status)));
     }
 }
+
