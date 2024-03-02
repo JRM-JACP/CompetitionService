@@ -1,7 +1,10 @@
 package org.jacp.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.jacp.dto.*;
+import org.jacp.dto.CompetitionDto;
+import org.jacp.dto.ParticipantDto;
+import org.jacp.dto.QuestionDto;
+import org.jacp.dto.SearchDto;
 import org.jacp.entity.CompetitionEntity;
 import org.jacp.entity.QuestionEntity;
 import org.jacp.enums.Status;
@@ -14,6 +17,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.Instant;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -54,14 +59,23 @@ public class CompetitionController {
         return ResponseEntity.ok(createCompetition);
     }
 
-
     @PostMapping("/{competitionId}/tasks/submit")
     public void submitCompetition
             (@PathVariable Long competitionId, @RequestBody QuestionEntity questionEntity) {
         questionEntity.setCompetitionId(competitionId);
         producer.produce(questionEntity);
     }
-}
+
+    @PostMapping("/{competitionId}/start")
+    public ResponseEntity<String> startCompetition(@PathVariable Long competitionId) {
+        CompetitionDto competitionDto =
+                mapper.toCompetitionEntityByCompetitionDto(competitionService.getCompetitionEntity(competitionId));
+        competitionDto.setStartDate(Date.from(Instant.now()));
+        competitionDto.calculateEndDate();
+        competitionDto.setStatus("QUEUED");
+        competitionService.create(mapper.toCompetitionEntity(competitionDto));
+        return ResponseEntity.ok("The competition has started");
+    }
 
     @GetMapping
     public ResponseEntity<List<CompetitionDto>> getAllByStatusCompetition(@RequestParam("status") Status status) {
