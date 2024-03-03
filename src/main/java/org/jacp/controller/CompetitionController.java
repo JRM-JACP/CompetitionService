@@ -72,7 +72,7 @@ public class CompetitionController {
                 mapper.toCompetitionEntityByCompetitionDto(competitionService.getCompetitionEntity(competitionId));
         competitionDto.setStartDate(Date.from(Instant.now()));
         competitionDto.calculateEndDate();
-        competitionDto.setStatus(Status.CREATED.toString());
+        competitionDto.setStatus(Status.QUEUED.toString());
         competitionService.create(mapper.toCompetitionEntity(competitionDto));
         return ResponseEntity.ok("The competition has started");
     }
