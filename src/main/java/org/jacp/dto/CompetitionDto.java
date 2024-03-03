@@ -19,8 +19,9 @@ public class CompetitionDto {
     private String status;
     private List<Long> tasks;
 
-    public void calculateEndDate(){
-        long ms = startDate.getTime() + (duration* 1000L);
+    public void calculateEndDate() {
+        long durationInMilliseconds = duration * 1000L;
+        long ms = startDate.getTime() + durationInMilliseconds;
         this.endDate = new Date(ms);
     }
 }
