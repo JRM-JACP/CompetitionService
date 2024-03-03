@@ -67,14 +67,14 @@ public class CompetitionController {
     }
 
     @PostMapping("/{competitionId}/start")
-    public ResponseEntity<String> startCompetition(@PathVariable Long competitionId) {
+    public ResponseEntity<CompetitionDto> startCompetition(@PathVariable Long competitionId) {
         CompetitionDto competitionDto =
                 mapper.toCompetitionEntityByCompetitionDto(competitionService.getCompetitionEntity(competitionId));
         competitionDto.setStartDate(Date.from(Instant.now()));
         competitionDto.calculateEndDate();
         competitionDto.setStatus(Status.QUEUED.toString());
         competitionService.create(mapper.toCompetitionEntity(competitionDto));
-        return ResponseEntity.ok("The competition has started");
+        return ResponseEntity.ok(competitionDto);
     }
 
     @GetMapping
