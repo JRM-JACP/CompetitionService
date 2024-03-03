@@ -18,4 +18,6 @@ public interface CompetitionMapper {
     List<CompetitionDto> toCompetitionDtoList(List<CompetitionEntity> competitionEntities);
 
     CompetitionEntity toCompetitionEntity(CompetitionDto competitionDto);
+
+    CompetitionDto toCompetitionEntityByCompetitionDto(CompetitionEntity competitionEntity);
 }
