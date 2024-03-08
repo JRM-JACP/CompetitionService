@@ -24,4 +24,8 @@ public class CompetitionDto {
         long ms = startDate.getTime() + durationInMilliseconds;
         this.endDate = new Date(ms);
     }
+
+    public void joinParticipant(Long participantId) {
+        participants.add(participantId);
+    }
 }

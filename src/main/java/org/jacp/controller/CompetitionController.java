@@ -77,6 +77,16 @@ public class CompetitionController {
         return ResponseEntity.ok(competitionDto);
     }
 
+    @PostMapping("/{competitionId}/join")
+    public ResponseEntity<CompetitionDto> joinParticipants(@PathVariable Long competitionId,
+                                                           @RequestParam Long participantId) {
+        CompetitionDto competitionDto =
+                mapper.toCompetitionEntityByCompetitionDto(competitionService.getCompetitionEntity(competitionId));
+        competitionDto.joinParticipant(participantId);
+        competitionService.create(mapper.toCompetitionEntity(competitionDto));
+        return ResponseEntity.ok(competitionDto);
+    }
+
     @GetMapping
     public ResponseEntity<List<CompetitionDto>> getAllByStatusCompetition(@RequestParam("status") Status status) {
         return ResponseEntity.ok(mapper.toCompetitionDtoList(competitionService.getAllByStatus(status)));
