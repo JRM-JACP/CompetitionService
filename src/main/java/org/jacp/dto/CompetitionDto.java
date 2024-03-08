@@ -18,14 +18,4 @@ public class CompetitionDto {
     private int duration;
     private String status;
     private List<Long> tasks;
-
-    public void calculateEndDate() {
-        long durationInMilliseconds = duration * 1000L;
-        long ms = startDate.getTime() + durationInMilliseconds;
-        this.endDate = new Date(ms);
-    }
-
-    public void joinParticipant(Long participantId) {
-        participants.add(participantId);
-    }
 }
