@@ -5,6 +5,7 @@ import org.jacp.entity.CompetitionEntity;
 import org.jacp.enums.Status;
 import org.jacp.repositry.CompetitionRepository;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
 import java.util.Date;
@@ -33,19 +34,19 @@ public class CompetitionService {
         return competitionRepository.getCompetitionEntityById(id);
     }
 
+    @Transactional
     public CompetitionEntity startCompetition(Long id) {
         CompetitionEntity competitionEntity = getCompetitionEntity(id);
         competitionEntity.setStartDate(Date.from(Instant.now()));
         competitionEntity.calculateEndDate();
         competitionEntity.setStatus(Status.QUEUED);
-        create(competitionEntity);
         return competitionEntity;
     }
 
+    @Transactional
     public CompetitionEntity joinParticipant(Long competitionId, Long participantId) {
         CompetitionEntity competitionEntity = getCompetitionEntity(competitionId);
         competitionEntity.joinParticipant(participantId);
-        create(competitionEntity);
         return competitionEntity;
     }
 }
