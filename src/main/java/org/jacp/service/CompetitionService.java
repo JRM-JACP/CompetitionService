@@ -5,7 +5,10 @@ import org.jacp.entity.CompetitionEntity;
 import org.jacp.enums.Status;
 import org.jacp.repositry.CompetitionRepository;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Instant;
+import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -27,7 +30,23 @@ public class CompetitionService {
                 .orElseThrow(() -> new NoSuchElementException("Competition with " + status + " status are not found"));
     }
 
-    public CompetitionEntity getCompetitionEntity(Long id){
+    public CompetitionEntity getCompetitionEntity(Long id) {
         return competitionRepository.getCompetitionEntityById(id);
+    }
+
+    @Transactional
+    public CompetitionEntity startCompetition(Long id) {
+        CompetitionEntity competitionEntity = getCompetitionEntity(id);
+        competitionEntity.setStartDate(Date.from(Instant.now()));
+        competitionEntity.calculateEndDate();
+        competitionEntity.setStatus(Status.QUEUED);
+        return competitionEntity;
+    }
+
+    @Transactional
+    public CompetitionEntity joinParticipant(Long competitionId, Long participantId) {
+        CompetitionEntity competitionEntity = getCompetitionEntity(competitionId);
+        competitionEntity.joinParticipant(participantId);
+        return competitionEntity;
     }
 }

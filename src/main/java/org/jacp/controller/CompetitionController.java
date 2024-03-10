@@ -17,8 +17,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.Instant;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -69,11 +67,15 @@ public class CompetitionController {
     @PostMapping("/{competitionId}/start")
     public ResponseEntity<CompetitionDto> startCompetition(@PathVariable Long competitionId) {
         CompetitionDto competitionDto =
-                mapper.toCompetitionEntityByCompetitionDto(competitionService.getCompetitionEntity(competitionId));
-        competitionDto.setStartDate(Date.from(Instant.now()));
-        competitionDto.calculateEndDate();
-        competitionDto.setStatus(Status.QUEUED.toString());
-        competitionService.create(mapper.toCompetitionEntity(competitionDto));
+                mapper.toCompetitionEntityByCompetitionDto(competitionService.startCompetition(competitionId));
+        return ResponseEntity.ok(competitionDto);
+    }
+
+    @PostMapping("/{competitionId}/join")
+    public ResponseEntity<CompetitionDto> joinParticipant(@PathVariable Long competitionId,
+                                                          @RequestParam Long participantId) {
+        CompetitionDto competitionDto =
+                mapper.toCompetitionEntityByCompetitionDto(competitionService.joinParticipant(competitionId, participantId));
         return ResponseEntity.ok(competitionDto);
     }
 

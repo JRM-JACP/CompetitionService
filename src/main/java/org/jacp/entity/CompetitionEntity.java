@@ -54,4 +54,14 @@ public class CompetitionEntity {
     @CollectionTable(name = "competition_tasks",
             joinColumns = @JoinColumn(name = "competition_id"))
     private List<Long> tasks;
+
+    public void joinParticipant(Long participantId) {
+        participants.add(participantId);
+    }
+
+    public void calculateEndDate() {
+        long durationInMilliseconds = duration * 1000L;
+        long ms = startDate.getTime() + durationInMilliseconds;
+        this.endDate = new Date(ms);
+    }
 }
