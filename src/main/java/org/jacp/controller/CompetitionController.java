@@ -83,5 +83,10 @@ public class CompetitionController {
     public ResponseEntity<List<CompetitionDto>> getAllByStatusCompetition(@RequestParam("status") Status status) {
         return ResponseEntity.ok(mapper.toCompetitionDtoList(competitionService.getAllByStatus(status)));
     }
+
+    @GetMapping("/{competitionId}/tasks")
+    public ResponseEntity<List<QuestionDto>> getTasksFromCurrentCompetition(@PathVariable Long competitionId) {
+        return ResponseEntity.ok(questionService.getTasksForCurrentCompetition(competitionId));
+    }
 }
 
