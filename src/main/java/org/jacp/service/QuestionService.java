@@ -45,7 +45,6 @@ public class QuestionService {
     public List<QuestionDto> getTasksForCurrentCompetition(Long competitionId) {
 
         List<Long> tasksIds = repository.getTasksFromCurrentCompetition(competitionId);
-        System.out.println(tasksIds);
         ResponseEntity<List<QuestionDto>> response = restTemplate.exchange(
                 URI.create(urlGetTasks),
                 HttpMethod.POST,
