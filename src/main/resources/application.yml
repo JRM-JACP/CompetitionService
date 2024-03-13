@@ -30,8 +30,10 @@ logging:
           descriptor:
             sql:
               BasicBinder: TRACE
+
 url:
-  questionService: "http://localhost:8082/api/v1/questions/filter"
+  questionService:
+    baseUrl: "http://localhost:8082/api/v1/questions"
 
 server:
   port: 8085
