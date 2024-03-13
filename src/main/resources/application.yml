@@ -33,8 +33,7 @@ logging:
 
 url:
   questionService:
-    filter: "http://localhost:8082/api/v1/questions/filter"
-    getTasks: "http://localhost:8082/api/v1/questions/getQuestionList"
+    baseUrl: "http://localhost:8082/api/v1/questions"
 
 server:
   port: 8085
