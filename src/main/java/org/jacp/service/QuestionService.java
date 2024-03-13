@@ -43,7 +43,9 @@ public class QuestionService {
     public List<QuestionDto> getTasksFromCompetition(Long competitionId) {
         List<Long> ids = competitionRepository.getCompetitionEntityById(competitionId).getTasks();
         ResponseEntity<List<QuestionDto>> response = restTemplate.exchange(
-                URI.create(baseUrl + "?ids=" + ids.stream().map(Object::toString).collect(Collectors.joining(","))),
+                URI.create(baseUrl + "?ids=" + ids.stream()
+                        .map(Object::toString)
+                        .collect(Collectors.joining(","))),
                 HttpMethod.GET,
                 new HttpEntity<>(ids),
                 new ParameterizedTypeReference<>() {
