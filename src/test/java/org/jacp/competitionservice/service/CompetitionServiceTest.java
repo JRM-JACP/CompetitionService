@@ -36,13 +36,13 @@ public class CompetitionServiceTest {
 
     @Test
     public void create_ReturnsCompetitionEntity() {
-        //given
+        // given
         when(competitionRepository.save(competitionEntity)).thenReturn(competitionEntity);
 
-        //when
+        // when
         var result = competitionService.create(competitionEntity);
 
-        //then
+        // then
         assertNotNull(result);
         assertEquals(competitionEntity, result);
         verify(competitionRepository, times(1)).save(competitionEntity);
