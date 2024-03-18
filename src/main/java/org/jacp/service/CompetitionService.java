@@ -3,6 +3,7 @@ package org.jacp.service;
 import lombok.AllArgsConstructor;
 import org.jacp.entity.CompetitionEntity;
 import org.jacp.enums.Status;
+import org.jacp.error.NoEntityException;
 import org.jacp.repositry.CompetitionRepository;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,7 +32,8 @@ public class CompetitionService {
     }
 
     public CompetitionEntity getCompetitionEntity(Long id) {
-        return competitionRepository.getCompetitionEntityById(id);
+        return competitionRepository.getCompetitionEntityById(id)
+                .orElseThrow(() -> new NoEntityException("Competition with " + id + " id are not found"));
     }
 
     @Transactional

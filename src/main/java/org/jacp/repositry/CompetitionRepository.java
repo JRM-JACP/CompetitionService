@@ -17,5 +17,5 @@ import java.util.Optional;
 public interface CompetitionRepository extends JpaRepository<CompetitionEntity, Long> {
     Optional<List<CompetitionEntity>> getAllByStatus(Status status);
 
-    CompetitionEntity getCompetitionEntityById(Long id);
+    Optional<CompetitionEntity> getCompetitionEntityById(Long id);
 }
