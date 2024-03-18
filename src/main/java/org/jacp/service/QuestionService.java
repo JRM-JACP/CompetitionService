@@ -3,7 +3,7 @@ package org.jacp.service;
 import lombok.RequiredArgsConstructor;
 import org.jacp.dto.FilterDto;
 import org.jacp.dto.QuestionDto;
-import org.jacp.repositry.CompetitionRepository;
+import org.jacp.entity.CompetitionEntity;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class QuestionService {
 
-    private final CompetitionRepository competitionRepository;
+    private final CompetitionService competitionService;
 
     private final RestTemplate restTemplate;
     @Value("${url.questionService.baseUrl}")
@@ -41,7 +41,8 @@ public class QuestionService {
     }
 
     public List<QuestionDto> getTasksFromCompetition(Long competitionId) {
-        List<Long> ids = competitionRepository.getCompetitionEntityById(competitionId).getTasks();
+        CompetitionEntity competitionEntity = competitionService.getCompetitionEntity(competitionId);
+        List<Long> ids = competitionEntity.getTasks();
         ResponseEntity<List<QuestionDto>> response = restTemplate.exchange(
                 URI.create(baseUrl + "?ids=" + ids.stream()
                         .map(Object::toString)
