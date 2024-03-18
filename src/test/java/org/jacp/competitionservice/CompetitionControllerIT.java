@@ -2,10 +2,6 @@ package org.jacp.competitionservice;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.dockerjava.api.model.ExposedPort;
-import com.github.dockerjava.api.model.HostConfig;
-import com.github.dockerjava.api.model.PortBinding;
-import com.github.dockerjava.api.model.Ports;
 import org.jacp.dto.*;
 import org.jacp.entity.CompetitionEntity;
 import org.jacp.enums.Difficulty;
@@ -20,13 +16,12 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.testcontainers.containers.PostgreSQLContainer;
-import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
-import org.testcontainers.utility.MountableFile;
 
 import java.util.List;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -35,7 +30,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Testcontainers
 @SpringBootTest
 @AutoConfigureMockMvc
-public class CompetitionControllerIT {
+public class CompetitionControllerIT extends AbstractContainerBaseTest {
     @MockBean
     private QuestionService questionService;
 
@@ -43,19 +38,6 @@ public class CompetitionControllerIT {
     private MockMvc mockMvc;
 
     private final ObjectMapper objectMapper = new ObjectMapper();
-
-    @Container
-    public static PostgreSQLContainer<?> postgreSQLContainer = new PostgreSQLContainer<>("postgres:latest")
-            .withExposedPorts(5432)
-            .withCreateContainerCmdModifier(cmd -> cmd.withHostConfig(
-                    new HostConfig().withPortBindings(new PortBinding(Ports.Binding.bindPort(5434), new ExposedPort(5432)))))
-            .withDatabaseName("competition")
-            .withUsername("postgres")
-            .withPassword("postgres")
-            .withEnv("COMPETITION_DB_USER", "docker")
-            .withEnv("COMPETITION_DB_PASSWORD", "docker")
-            .withEnv("COMPETITION_DB_NAME", "competition")
-            .withCopyFileToContainer(MountableFile.forHostPath("db/init/init-script.sql"), "/docker-entrypoint-initdb.d/init-script.sql");
 
     @Test
     public void createCompetition_ReturnsCompetitionEntity() throws Exception {
@@ -141,6 +123,6 @@ public class CompetitionControllerIT {
         var competitionDtoResponseList = objectMapper.readValue(response, new TypeReference<List<CompetitionDto>>() {
         });
         // then
-        assertEquals(3, competitionDtoResponseList.size());
+        assertThat(competitionDtoResponseList, everyItem(hasProperty("status", is(status.toString()))));
     }
 }
