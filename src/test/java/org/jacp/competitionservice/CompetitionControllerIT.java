@@ -30,7 +30,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Testcontainers
 @SpringBootTest
 @AutoConfigureMockMvc
-public class CompetitionControllerIT extends AbstractContainerBaseTest {
+public class CompetitionControllerIT extends AbstractPostgresContainerTest {
     @MockBean
     private QuestionService questionService;
 
